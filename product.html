@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mikey's Fish - Salmon Product</title>
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+    <header style="padding: 8px 0;">
+        <div class="container" style="text-align: center;">
+            <h1 style="font-size: 1.8rem; margin: 0;">Mikey's Fish</h1>
+            <p style="margin: 4px 0 0 0; font-size: 1.1rem;">Fresh seafood 7 days a week!</p>
+        </div>
+    </header>
+
+    <nav style="padding: 6px 0;">
+        <div class="container">
+            <a href="index.html" style="padding: 8px 12px; font-size: 0.9rem;">Home</a>
+            <a href="catalog.html" style="padding: 8px 12px; font-size: 0.9rem;">Catalog</a>
+            <a href="booking.html" style="padding: 8px 12px; font-size: 0.9rem;">Bookings</a>
+            <a href="order.html" style="padding: 8px 12px; font-size: 0.9rem;">Orders</a>
+            <a href="about.html" style="padding: 8px 12px; font-size: 0.9rem;">About Us</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin: 48px 0; align-items: start;">
+            <!-- Left Side - Big Salmon Picture -->
+            <div>
+                <div id="salmon-image" style="background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); height: 500px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 8rem; box-shadow: 0 8px 32px rgba(0,0,0,0.1);">
+                    🐟
+                </div>
+            </div>
+
+            <!-- Right Side - Product Info and Order Form -->
+            <div>
+                <h1 id="salmon-name" style="color: var(--blue); margin-bottom: 16px; font-size: 2.5rem;">Atlantic Salmon</h1>
+                <p id="salmon-description" style="font-size: 1.1rem; line-height: 1.6; margin-bottom: 24px; color: var(--gray-700);">
+                    Fresh Atlantic salmon, caught daily from the pristine waters of the North Atlantic. Perfect for grilling, baking, or pan-searing. Rich in omega-3 fatty acids and protein.
+                </p>
+                
+                <div style="background: var(--gray-50); padding: 24px; border-radius: 12px; margin-bottom: 24px;">
+                    <h3 style="color: var(--blue); margin-bottom: 16px;">Product Details</h3>
+                    <div style="margin-bottom: 16px;">
+                        <div>
+                            <strong>Price per pound:</strong><br>
+                            <span id="price-per-pound" style="color: var(--blue); font-size: 1.2rem; font-weight: bold;">$18.99</span>
+                        </div>
+                    </div>
+                    <div>
+                        <strong>Origin:</strong> North Atlantic<br>
+                        <strong>Processing:</strong> Fresh, never frozen<br>
+                        <strong>Quality:</strong> Premium Grade A
+                    </div>
+                </div>
+
+                <!-- Order Form -->
+                <div class="card" style="padding: 24px;">
+                    <h3 style="color: var(--blue); margin-bottom: 20px;">Order Your Salmon</h3>
+                    
+                    <form id="order-form">
+                        <label for="pounds">How many pounds would you like?</label>
+                        <input type="number" id="pounds" name="pounds" min="0.5" max="50" step="0.5" value="1" style="margin-bottom: 16px;">
+                        
+                        <div style="background: var(--gray-50); padding: 16px; border-radius: 8px; margin-bottom: 20px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                <span>Price per pound:</span>
+                                <span id="display-price">$18.99</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                <span>Quantity:</span>
+                                <span id="display-quantity">1.0 lbs</span>
+                            </div>
+                            <hr style="margin: 12px 0; border: none; border-top: 1px solid var(--gray-200);">
+                            <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 1.1rem;">
+                                <span>Total:</span>
+                                <span id="total-price" style="color: var(--blue);">$18.99</span>
+                            </div>
+                        </div>
+                        
+                        <button type="button" id="add-to-order" class="btn" style="width: 100%; padding: 16px; font-size: 1.1rem; margin-bottom: 12px;">
+                            Add to Order
+                        </button>
+                        
+                        <a href="catalog.html" style="display: block; text-align: center; color: var(--gray-700); text-decoration: none;">
+                            ← Back to Catalog
+                        </a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Mikey's Fish. All rights reserved. | Fresh salmon since 1985</p>
+            <p style="margin-top: 8px; font-size: 0.9rem;">
+                📍 123 Ocean Drive, Seaside City | 📞 (360) 403-5252 | 🕒 Open 7 days a week
+            </p>
+        </div>
+    </footer>
+
+    <script src="assets/app.js"></script>
+    <script>
+        // Salmon data
+        const salmonData = {
+            'bristol-bay-smoked-sockeye': {
+                name: 'Bristol Bay Smoked Sockeye',
+                image: 'assets/images/bristol bay.png',
+                price: 32.99,
+                description: 'Premium Bristol Bay sockeye salmon, cold-smoked to perfection. This world-renowned salmon from Alaska\'s pristine waters offers a rich, buttery flavor with a delicate smoky finish. Perfect for charcuterie boards, bagels, or elegant appetizers.',
+                gradient: 'linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%)'
+            },
+            'fresh-king-salmon': {
+                name: 'Fresh King Salmon',
+                image: 'assets/images/king salmon.png',
+                price: 20.00,
+                pricePerPound: 20.00,
+                description: 'Fresh King salmon, the largest and most prized of all Pacific salmon species. Known for its rich, buttery texture and high oil content. Caught fresh daily from the Pacific Northwest. Excellent for grilling, baking, or sashimi.',
+                gradient: 'linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%)'
+            },
+            'fresh-silver-salmon': {
+                name: 'Fresh Silver Salmon',
+                image: 'assets/images/silver1.png',
+                price: 4.00,
+                pricePerPound: 4.00,
+                description: 'Fresh Silver salmon (Coho) with its distinctive bright silver skin and firm, mild-flavored flesh. Sustainably caught from Pacific waters. Perfect for those who prefer a lighter salmon taste while maintaining excellent quality.',
+                gradient: 'linear-gradient(135deg, #fff3e0 0%, #ffcc02 100%)'
+            },
+            'halibut-fillets': {
+                name: 'Halibut Fillets',
+                image: 'assets/images/halibut.png',
+                price: 24.99,
+                pricePerPound: 24.99,
+                description: 'Premium Pacific halibut fillets with their distinctive white, flaky flesh and mild, sweet flavor. This lean, versatile fish is perfect for grilling, pan-searing, or baking. A favorite among seafood connoisseurs.',
+                gradient: 'linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%)'
+            },
+            'sockeye-fillets': {
+                name: 'Sockeye Fillets',
+                image: 'assets/images/bristol bay.png',
+                price: 26.99,
+                pricePerPound: 26.99,
+                description: 'Premium sockeye salmon fillets with their distinctive deep red flesh and rich, full flavor. Known for their firm texture and high omega-3 content. Perfect for grilling, baking, or pan-searing.',
+                gradient: 'linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%)'
+            },
+            'king-salmon-fillets': {
+                name: 'King Salmon Fillets',
+                image: 'assets/images/king salmon.png',
+                price: 20.00,
+                pricePerPound: 20.00,
+                description: 'Premium king salmon fillets, the largest and most prized of all Pacific salmon. Known for their rich, buttery texture and high oil content. Excellent for grilling, baking, or sashimi.',
+                gradient: 'linear-gradient(135deg, #e3f2fd 0%, #90caf9 100%)'
+            },
+            'jumbo-spot-prawns': {
+                name: 'Jumbo Spot Prawns',
+                image: 'assets/images/prawns.png',
+                price: 34.99,
+                pricePerPound: 34.99,
+                description: 'Fresh jumbo spot prawns with their sweet, delicate flavor and firm texture. These large, succulent prawns are perfect for grilling, sautéing, or adding to pasta dishes. A true delicacy from the Pacific Northwest.',
+                gradient: 'linear-gradient(135deg, #fff3e0 0%, #ffb74d 100%)'
+            },
+            'silver-salmon-fillets': {
+                name: 'Silver Salmon Fillets',
+                image: 'assets/images/silver1.png',
+                price: 24.99,
+                pricePerPound: 24.99,
+                description: 'Fresh silver salmon (Coho) fillets with bright silver skin and firm, mild-flavored flesh. Sustainably caught from Pacific waters. Perfect for those who prefer a lighter salmon taste while maintaining excellent quality.',
+                gradient: 'linear-gradient(135deg, #f3e5f5 0%, #ce93d8 100%)'
+            },
+            'smoked-silver-salmon': {
+                name: 'Smoked Silver Salmon',
+                image: 'assets/images/silver1.png',
+                price: 28.99,
+                pricePerPound: 28.99,
+                description: 'Cold-smoked silver salmon with a delicate smoky flavor that enhances the natural taste of the fish. Perfect for appetizers, bagels, or elegant charcuterie boards. A sophisticated addition to any meal.',
+                gradient: 'linear-gradient(135deg, #efebe9 0%, #d7ccc8 100%)'
+            },
+            'whole-king-salmon': {
+                name: 'Whole King Salmon',
+                image: 'assets/images/king salmon.png',
+                price: 20.00,
+                pricePerPound: 20.00,
+                description: 'Fresh whole king salmon, the largest and most prized of all Pacific salmon species. Perfect for special occasions or when you want the entire fish for multiple cooking methods. Known for its rich, buttery texture and high oil content.',
+                gradient: 'linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%)'
+            },
+            'smoked-king-salmon': {
+                name: 'Smoked King Salmon',
+                image: 'assets/images/king salmon.png',
+                price: 20.00,
+                pricePerPound: 20.00,
+                description: 'Premium smoked king salmon with a rich, buttery flavor enhanced by the smoking process. Perfect for elegant appetizers, bagels, or charcuterie boards. A true delicacy that showcases the finest qualities of king salmon.',
+                gradient: 'linear-gradient(135deg, #efebe9 0%, #d7ccc8 100%)'
+            },
+            'jumbo-pot-prawns': {
+                name: 'Jumbo Pot Prawns',
+                image: 'assets/images/prawns.png',
+                price: 34.99,
+                pricePerPound: 34.99,
+                description: 'Fresh jumbo pot prawns with their sweet, delicate flavor and firm texture. These large, succulent prawns are perfect for grilling, sautéing, or adding to pasta dishes. A true delicacy from the Pacific Northwest.',
+                gradient: 'linear-gradient(135deg, #fff3e0 0%, #ffb74d 100%)'
+            },
+            'whole-silver-salmon': {
+                name: 'Whole Silver Salmon',
+                image: 'assets/images/silver1.png',
+                price: 4.00,
+                pricePerPound: 4.00,
+                description: 'Fresh whole silver salmon (Coho) with its distinctive bright silver skin and firm, mild-flavored flesh. Sustainably caught from Pacific waters. Perfect for those who prefer a lighter salmon taste while maintaining excellent quality.',
+                gradient: 'linear-gradient(135deg, #fff3e0 0%, #ffcc02 100%)'
+            },
+            'crab-pieces': {
+                name: 'Dungeness Crab',
+                image: 'assets/images/crab.png',
+                price: 29.99,
+                pricePerPound: 29.99,
+                description: 'Fresh Dungeness crab pieces with sweet, delicate meat and distinctive flavor. These premium crab pieces are perfect for crab cakes, salads, or enjoying on their own. A true Pacific Northwest delicacy.',
+                gradient: 'linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%)'
+            },
+            'jumbo-pot-prawns': {
+                name: 'Jumbo Pot Prawns',
+                image: 'assets/images/prawns.png',
+                price: 34.99,
+                pricePerPound: 34.99,
+                description: 'Fresh jumbo pot prawns with their sweet, delicate flavor and firm texture. These large, succulent prawns are perfect for grilling, sautéing, or adding to pasta dishes. A true delicacy from the Pacific Northwest.',
+                gradient: 'linear-gradient(135deg, #fff3e0 0%, #ffb74d 100%)'
+            }
+        };
+
+        // Get salmon type from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const salmonType = urlParams.get('salmon') || 'whole-king-salmon';
+        const prawnsType = urlParams.get('prawns');
+        const dungenessType = urlParams.get('dungeness');
+        
+        let salmon;
+        if (prawnsType) {
+            salmon = salmonData[prawnsType];
+        } else if (dungenessType) {
+            salmon = salmonData[dungenessType];
+        } else {
+            salmon = salmonData[salmonType] || salmonData['fresh-king-salmon'];
+        }
+
+        // Update page content
+        document.getElementById('salmon-name').textContent = salmon.name;
+        document.getElementById('salmon-description').textContent = salmon.description;
+        document.getElementById('price-per-pound').textContent = `$${salmon.price.toFixed(2)}`;
+        document.getElementById('display-price').textContent = `$${salmon.price.toFixed(2)}`;
+        
+        const imageDiv = document.getElementById('salmon-image');
+        imageDiv.style.backgroundImage = `url('${salmon.image}')`;
+        imageDiv.style.backgroundSize = 'cover';
+        imageDiv.style.backgroundPosition = 'center';
+        imageDiv.style.backgroundRepeat = 'no-repeat';
+        imageDiv.textContent = '';
+
+        // Update page title
+        document.title = `Mikey's Fish - ${salmon.name}`;
+
+        // Calculate total price
+        function updateTotal() {
+            const pounds = parseFloat(document.getElementById('pounds').value) || 0;
+            const pricePerPound = salmon.price;
+            const total = pounds * pricePerPound;
+            
+            document.getElementById('display-quantity').textContent = `${pounds} lbs`;
+            document.getElementById('total-price').textContent = `$${total.toFixed(2)}`;
+        }
+
+        // Update total when pounds change
+        document.getElementById('pounds').addEventListener('input', updateTotal);
+
+        // Add to order functionality
+        document.getElementById('add-to-order').addEventListener('click', function() {
+            const pounds = parseFloat(document.getElementById('pounds').value) || 0;
+            if (pounds <= 0) {
+                alert('Please enter a valid quantity');
+                return;
+            }
+            
+            const total = pounds * salmon.price;
+            
+            // Determine the correct SKU based on URL parameters
+            let productSku;
+            if (prawnsType) {
+                productSku = prawnsType;
+            } else if (dungenessType) {
+                productSku = dungenessType;
+            } else {
+                productSku = salmonType;
+            }
+            
+            // Add to cart using the existing cart system
+            const cart = getCart();
+            const item = cart.find(i => i.sku === productSku);
+            if (item) {
+                item.qty += pounds;
+            } else {
+                cart.push({
+                    sku: productSku,
+                    name: salmon.name,
+                    price: salmon.price,
+                    qty: pounds,
+                    total: total
+                });
+            }
+            setCart(cart);
+            
+            alert(`Added ${pounds} lbs of ${salmon.name} to your order for $${total.toFixed(2)}`);
+        });
+
+        // Initialize total
+        updateTotal();
+    </script>
+</body>
+</html>
