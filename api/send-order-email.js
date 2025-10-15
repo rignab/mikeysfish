@@ -1,5 +1,3 @@
-const nodemailer = require('nodemailer');
-
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method not allowed' });
@@ -18,9 +16,15 @@ export default async function handler(req, res) {
       console.error('Missing environment variables');
       return res.status(500).json({ 
         success: false, 
-        message: 'Email configuration missing' 
+        message: 'Email configuration missing - check environment variables' 
       });
     }
+
+    // For now, just return success without actually sending emails
+    return res.status(200).json({ 
+      success: true, 
+      message: 'Email function reached - environment variables are set' 
+    });
 
     const {
       customerName,
