@@ -1,15 +1,6 @@
 const nodemailer = require('nodemailer');
 
 export default async function handler(req, res) {
-  // Allow GET requests for testing
-  if (req.method === 'GET') {
-    return res.status(200).json({ 
-      message: 'Email function is working',
-      hasEmailUser: !!process.env.EMAIL_USER,
-      hasEmailPassword: !!process.env.EMAIL_PASSWORD
-    });
-  }
-  
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method not allowed' });
   }
