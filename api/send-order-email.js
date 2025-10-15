@@ -1,3 +1,5 @@
+const nodemailer = require('nodemailer');
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method not allowed' });
@@ -19,12 +21,6 @@ export default async function handler(req, res) {
         message: 'Email configuration missing - check environment variables' 
       });
     }
-
-    // For now, just return success without actually sending emails
-    return res.status(200).json({ 
-      success: true, 
-      message: 'Email function reached - environment variables are set' 
-    });
 
     const {
       customerName,
@@ -49,13 +45,10 @@ export default async function handler(req, res) {
       }
     });
 
-    // Verify transporter configuration
-    await transporter.verify();
-
     // Email for company (order notification)
     const companyMailOptions = {
       from: 'mikeandmylasfish@gmail.com',
-      to: 'mikeandmylasfish@gmail.com', // Company receives notification
+      to: 'mikeandmylasfish@gmail.com',
       subject: `New Pickup Order - ${customerName}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -108,7 +101,7 @@ export default async function handler(req, res) {
     // Email for customer (confirmation)
     const customerMailOptions = {
       from: 'mikeandmylasfish@gmail.com',
-      to: customerEmail, // Send to customer's email
+      to: customerEmail,
       subject: `Pickup Confirmation - Mikey's Fish`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
