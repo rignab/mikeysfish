@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mikey's Fish - Salmon Catalog</title>
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+    <header style="padding: 8px 0;">
+        <div class="container" style="text-align: center;">
+            <h1 style="font-size: 1.8rem; margin: 0;">Mikey's Fish</h1>
+            <p style="margin: 4px 0 0 0; font-size: 1.1rem;">Fresh seafood 7 days a week!</p>
+        </div>
+    </header>
+
+    <nav style="padding: 6px 0;">
+        <div class="container">
+            <a href="index.html" style="padding: 8px 12px; font-size: 0.9rem;">Home</a>
+            <a href="catalog.html" class="active" style="padding: 8px 12px; font-size: 0.9rem;">Catalog</a>
+            <a href="booking.html" style="padding: 8px 12px; font-size: 0.9rem;">Bookings</a>
+            <a href="order.html" style="padding: 8px 12px; font-size: 0.9rem;">Orders</a>
+            <a href="about.html" style="padding: 8px 12px; font-size: 0.9rem;">About Us</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- Salmon Selection -->
+        <section style="margin: 48px 0;">
+            <h2 style="text-align: center; margin-bottom: 32px;">Our Seafood Selection</h2>
+            <div class="grid" style="grid-template-columns: repeat(3, 1fr); gap: 24px;">
+                <!-- Products will be dynamically loaded here by JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Mikey's Fish. All rights reserved. | Fresh salmon since 1985</p>
+            <p style="margin-top: 8px; font-size: 0.9rem;">
+                📍 8105 27th Ave NE, Tulalip, WA 98271 | 📞 (360) 403-5252 | 🕒 Open 7 days a week
+            </p>
+        </div>
+    </footer>
+
+    <script src="assets/app.js"></script>
+    <script>
+        // Product data organized by category based on Mikey's Fish Co pricing
+        const productCategories = {
+            'all': [
+                // Smoked Products
+                { name: 'Sweet Cured Sockeye (Tulalip Bay)', url: 'product.html?salmon=sweet-cured-sockeye-tulalip', image: 'assets/images/bristol bay.png', gradient: 'linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%)' },
+                { name: 'Regular Cured Sockeye (Tulalip Bay)', url: 'product.html?salmon=regular-cured-sockeye-tulalip', image: 'assets/images/bristol bay.png', gradient: 'linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%)' },
+                { name: 'Sweet Cured Sockeye (Bristol Bay)', url: 'product.html?salmon=sweet-cured-sockeye-bristol', image: 'assets/images/bristol bay.png', gradient: 'linear-gradient(135deg, #f3e5f5 0%, #ce93d8 100%)' },
+                { name: 'Regular Cured Sockeye (Bristol Bay)', url: 'product.html?salmon=regular-cured-sockeye-bristol', image: 'assets/images/bristol bay.png', gradient: 'linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%)' },
+                // Whole Frozen
+                { name: 'Whole Frozen Silver Salmon', url: 'product.html?salmon=whole-frozen-silver', image: 'assets/images/silver1.png', gradient: 'linear-gradient(135deg, #fff3e0 0%, #ffcc02 100%)' },
+                { name: 'Whole Frozen King Salmon', url: 'product.html?salmon=whole-frozen-king', image: 'assets/images/king salmon.png', gradient: 'linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%)' },
+                // Frozen Pin-Boned
+                { name: 'Sockeye Pack (Frozen Pin-Boned)', url: 'product.html?salmon=sockeye-pack', image: 'assets/images/bristol bay.png', gradient: 'linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%)' },
+                { name: 'King Pack (Frozen Pin-Boned)', url: 'product.html?salmon=king-pack', image: 'assets/images/king salmon.png', gradient: 'linear-gradient(135deg, #e3f2fd 0%, #90caf9 100%)' },
+                // Fresh Salmon
+                { name: 'Fresh Silver Salmon', url: 'product.html?salmon=fresh-silver', image: 'assets/images/silver1.png', gradient: 'linear-gradient(135deg, #fff3e0 0%, #ffcc02 100%)' },
+                { name: 'Fresh King Salmon', url: 'product.html?salmon=fresh-king', image: 'assets/images/king salmon.png', gradient: 'linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%)' },
+                // Other Seafood
+                { name: 'Dungeness Crab', url: 'product.html?dungeness=crab-pieces', image: 'assets/images/crab.png', gradient: 'linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%)' },
+                { name: 'Jumbo Pot Prawns', url: 'product.html?prawns=jumbo-pot-prawns', image: 'assets/images/prawns.png', gradient: 'linear-gradient(135deg, #fff3e0 0%, #ffb74d 100%)' }
+            ],
+            'smoked': [
+                { name: 'Sweet Cured Sockeye (Tulalip Bay)', url: 'product.html?salmon=sweet-cured-sockeye-tulalip', image: 'assets/images/bristol bay.png', gradient: 'linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%)' },
+                { name: 'Regular Cured Sockeye (Tulalip Bay)', url: 'product.html?salmon=regular-cured-sockeye-tulalip', image: 'assets/images/bristol bay.png', gradient: 'linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%)' },
+                { name: 'Sweet Cured Sockeye (Bristol Bay)', url: 'product.html?salmon=sweet-cured-sockeye-bristol', image: 'assets/images/bristol bay.png', gradient: 'linear-gradient(135deg, #f3e5f5 0%, #ce93d8 100%)' },
+                { name: 'Regular Cured Sockeye (Bristol Bay)', url: 'product.html?salmon=regular-cured-sockeye-bristol', image: 'assets/images/bristol bay.png', gradient: 'linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%)' }
+            ],
+            'salmon': [
+                { name: 'Whole Frozen Silver Salmon', url: 'product.html?salmon=whole-frozen-silver', image: 'assets/images/silver1.png', gradient: 'linear-gradient(135deg, #fff3e0 0%, #ffcc02 100%)' },
+                { name: 'Whole Frozen King Salmon', url: 'product.html?salmon=whole-frozen-king', image: 'assets/images/king salmon.png', gradient: 'linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%)' },
+                { name: 'Sockeye Pack (Frozen Pin-Boned)', url: 'product.html?salmon=sockeye-pack', image: 'assets/images/bristol bay.png', gradient: 'linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%)' },
+                { name: 'King Pack (Frozen Pin-Boned)', url: 'product.html?salmon=king-pack', image: 'assets/images/king salmon.png', gradient: 'linear-gradient(135deg, #e3f2fd 0%, #90caf9 100%)' },
+                { name: 'Fresh Silver Salmon', url: 'product.html?salmon=fresh-silver', image: 'assets/images/silver1.png', gradient: 'linear-gradient(135deg, #fff3e0 0%, #ffcc02 100%)' },
+                { name: 'Fresh King Salmon', url: 'product.html?salmon=fresh-king', image: 'assets/images/king salmon.png', gradient: 'linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%)' }
+            ],
+            'not-salmon': [
+                { name: 'Dungeness Crab', url: 'product.html?dungeness=crab-pieces', image: 'assets/images/crab.png', gradient: 'linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%)' },
+                { name: 'Jumbo Pot Prawns', url: 'product.html?prawns=jumbo-pot-prawns', image: 'assets/images/prawns.png', gradient: 'linear-gradient(135deg, #fff3e0 0%, #ffb74d 100%)' }
+            ]
+        };
+
+        // Category titles
+        const categoryTitles = {
+            'smoked': 'Smoked Salmon Selection',
+            'salmon': 'Salmon Selection',
+            'not-salmon': 'Other Seafood Selection',
+            'all': 'Our Seafood Selection'
+        };
+
+        // Function to render products for a specific category
+        function renderProducts(category) {
+            const grid = document.querySelector('.grid');
+            const products = productCategories[category] || [];
+            const heading = document.querySelector('h2');
+            
+            // Update the heading
+            if (heading) {
+                heading.textContent = categoryTitles[category] || 'Our Seafood Selection';
+            }
+            
+            grid.innerHTML = products.map(product => `
+                <a href="${product.url}" class="card" style="text-align: center; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; padding: 20px; text-decoration: none; color: inherit;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 1px 3px rgba(0,0,0,0.1)'">
+                    <div style="background-image: url('${product.image}'); background-size: cover; background-position: center; background-repeat: no-repeat; height: 200px; border-radius: 12px; margin-bottom: 16px; display: flex; align-items: center; justify-content: center;"></div>
+                    <h3 style="color: var(--blue); margin: 0; font-size: 1.2rem;">${product.name}</h3>
+                </a>
+            `).join('');
+        }
+
+        // Check URL hash and render appropriate products
+        function checkCategory() {
+            const hash = window.location.hash.substring(1);
+            if (hash && productCategories[hash]) {
+                renderProducts(hash);
+            } else {
+                // Show all products by default
+                renderProducts('all');
+            }
+        }
+
+        // Listen for hash changes
+        window.addEventListener('hashchange', checkCategory);
+        
+        // Initialize on page load
+        checkCategory();
+    </script>
+</body>
+</html>

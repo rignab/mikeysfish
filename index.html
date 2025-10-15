@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mikey's Fish - Fresh Salmon</title>
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+    <header style="padding: 8px 0;">
+        <div class="container" style="text-align: center;">
+            <h1 style="font-size: 1.8rem; margin: 0;">Mikey's Fish</h1>
+            <p style="margin: 4px 0 0 0; font-size: 1.1rem;">Fresh seafood 7 days a week!</p>
+        </div>
+    </header>
+
+    <nav style="padding: 6px 0;">
+        <div class="container">
+            <a href="index.html" class="active" style="padding: 8px 12px; font-size: 0.9rem;">Home</a>
+            <a href="catalog.html" style="padding: 8px 12px; font-size: 0.9rem;">Catalog</a>
+            <a href="booking.html" style="padding: 8px 12px; font-size: 0.9rem;">Bookings</a>
+            <a href="order.html" style="padding: 8px 12px; font-size: 0.9rem;">Orders</a>
+            <a href="about.html" style="padding: 8px 12px; font-size: 0.9rem;">About Us</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="hero" style="background-image: url('assets/images/homePgSalmonPic.png'); background-size: cover; background-position: center; background-repeat: no-repeat; color: white; padding: 60px 20px; border-radius: 16px; text-align: center; margin: 24px 0; position: relative;">
+            <h2 style="font-size: 2.5rem; margin: 0 0 16px 0;">Welcome to Mikey's Fish</h2>
+            <p style="font-size: 1.2rem; margin: 0 0 32px 0; opacity: 0.9;">The freshest seafood in town, caught and provided with care</p>
+            <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+                <a href="catalog.html" class="btn" style="background: white; color: var(--blue); text-decoration: none; padding: 14px 28px; font-size: 1.1rem;">View Our Fresh Seafood Selection</a>
+            </div>
+        </section>
+
+        <!-- Seafood Categories -->
+        <section style="margin: 48px 0;">
+            <h2 style="text-align: center; margin-bottom: 32px;">Choose Your Seafood</h2>
+            <div class="grid cols-3">
+                <a href="catalog.html#smoked" class="card" style="background: #e3f2fd; color: inherit; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 1px 3px rgba(0,0,0,0.1)'">
+                    <div style="background-image: url('assets/images/smoked.png'); background-size: cover; background-position: center; background-repeat: no-repeat; height: 200px; border-radius: 8px; margin-bottom: 16px; display: flex; align-items: center; justify-content: center;"></div>
+                    <h3 style="color: var(--blue); margin-bottom: 8px;">Smoked Salmon</h3>
+                    <p>Premium cured salmon varieties with rich, complex flavors. Sweet and regular cured sockeye from both Tulalip Bay and Bristol Bay.</p>
+                    <div style="margin-top: 16px; color: var(--blue-600); font-weight: 600;">Browse Smoked →</div>
+                </a>
+                <a href="catalog.html#salmon" class="card" style="background: #e3f2fd; color: inherit; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 1px 3px rgba(0,0,0,0.1)'">
+                    <div style="background-image: url('assets/images/salmon.png'); background-size: cover; background-position: center; background-repeat: no-repeat; height: 200px; border-radius: 8px; margin-bottom: 16px; display: flex; align-items: center; justify-content: center;"></div>
+                    <h3 style="color: var(--blue); margin-bottom: 8px;">Salmon</h3>
+                    <p>Whole frozen, frozen pin-boned packs, and fresh salmon varieties. Whole frozen silver and king salmon, sockeye and king packs, plus fresh silver and king salmon.</p>
+                    <div style="margin-top: 16px; color: var(--blue-600); font-weight: 600;">Browse Salmon →</div>
+                </a>
+                <a href="catalog.html#not-salmon" class="card" style="background: #e3f2fd; color: inherit; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 1px 3px rgba(0,0,0,0.1)'">
+                    <div style="background-image: url('assets/images/crab.png'); background-size: cover; background-position: center; background-repeat: no-repeat; height: 200px; border-radius: 8px; margin-bottom: 16px; display: flex; align-items: center; justify-content: center;"></div>
+                    <h3 style="color: var(--blue); margin-bottom: 8px;">Not Salmon</h3>
+                    <p>Other premium seafood varieties. Fresh dungeness crab and jumbo pot prawns.</p>
+                    <div style="margin-top: 16px; color: var(--blue-600); font-weight: 600;">Browse Other Seafood →</div>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Mikey's Fish. All rights reserved. | Fresh salmon since 1985</p>
+            <p style="margin-top: 8px; font-size: 0.9rem;">
+                📍 8105 27th Ave NE, Tulalip, WA 98271 | 📞 (360) 403-5252 | 🕒 Open 7 days a week
+            </p>
+        </div>
+    </footer>
+
+    <script src="assets/app.js"></script>
+</body>
+</html>
