@@ -318,8 +318,11 @@
                 orderCount: cart.length
             };
             
-            // Send email using EmailJS
-            emailjs.send('service_t1r8uqf', 'template_wx52ayh', emailData)
+            // Send email using EmailJS to customer
+            emailjs.send('service_t1r8uqf', 'template_wx52ayh', {
+                to_email: customerEmail,
+                ...emailData
+            })
                 .then(function(response) {
                     console.log('Email sent successfully!', response.status, response.text);
                 })
