@@ -318,16 +318,29 @@
                 orderCount: cart.length
             };
             
-            // Send email using EmailJS to customer
+            // Send confirmation email to customer
             emailjs.send('service_t1r8uqf', 'template_wx52ayh', {
                 to_email: customerEmail,
                 ...emailData
             })
                 .then(function(response) {
-                    console.log('Email sent successfully!', response.status, response.text);
+                    console.log('Customer email sent successfully!', response.status, response.text);
                 })
                 .catch(function(error) {
-                    console.log('Email failed to send:', error);
+                    console.log('Customer email failed to send:', error);
+                });
+
+            // Send notification email to business
+            emailjs.send('service_t1r8uqf', 'template_business_notification', {
+                to_email: 'mikeandmylasfish@gmail.com',
+                currentTime: new Date().toLocaleString(),
+                ...emailData
+            })
+                .then(function(response) {
+                    console.log('Business notification sent successfully!', response.status, response.text);
+                })
+                .catch(function(error) {
+                    console.log('Business notification failed to send:', error);
                     // Still proceed with booking even if email fails
                 });
             
