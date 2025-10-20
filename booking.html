@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mikey's Fish - Schedule Pickup</title>
     <link rel="stylesheet" href="assets/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body>
     <header style="padding: 8px 0;">
@@ -98,6 +99,11 @@
 
     <script src="assets/app.js"></script>
     <script>
+        // Initialize EmailJS
+        (function() {
+            emailjs.init("cbyOZQMPytjswPhJM");
+        })();
+        
         let selectedDate = null;
         let selectedTime = null;
 
@@ -300,7 +306,7 @@
             ).join('\n');
             const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.qty), 0).toFixed(2);
             
-            // Send email notification via Vercel Function
+            // Send email notification via EmailJS
             const emailData = {
                 customerName: customerName,
                 customerPhone: customerPhone,
@@ -312,25 +318,15 @@
                 orderCount: cart.length
             };
             
-            fetch('/api/send-order-email', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(emailData)
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    console.log('Email sent successfully!');
-                } else {
-                    console.log('Email failed to send:', data.message);
-                }
-            })
-            .catch(error => {
-                console.log('Error sending email:', error);
-                // Still proceed with booking even if email fails
-            });
+            // Send email using EmailJS
+            emailjs.send('service_t1r8uqf', 'template_wx52ayh', emailData)
+                .then(function(response) {
+                    console.log('Email sent successfully!', response.status, response.text);
+                })
+                .catch(function(error) {
+                    console.log('Email failed to send:', error);
+                    // Still proceed with booking even if email fails
+                });
             
             // Clear the cart after confirming pickup
             setCart([]);
