@@ -23,7 +23,15 @@ function renderOrder(){
   el.innerHTML = `
     <div class="card">
       <h3>Order</h3>
-      <ul>${cart.map(i=>`<li>${i.sku} × ${i.qty}</li>`).join("")}</ul>
+      <ul>${cart.map(i=>{
+        // Check if this is a smoked salmon product
+        const isSmoked = i.sku && (
+          i.sku.includes('sweet-cured') || 
+          i.sku.includes('regular-cured')
+        );
+        const unit = isSmoked ? 'units' : 'lbs';
+        return `<li>${i.name || i.sku} × ${i.qty} ${unit}</li>`;
+      }).join("")}</ul>
       <button id="checkoutBtn">Checkout</button>
       <button id="clearBtn" style="margin-left:8px;background:#6b7280">Clear</button>
     </div>`;

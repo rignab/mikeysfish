@@ -44,7 +44,7 @@
                     <h3 style="color: var(--blue); margin-bottom: 16px;">Product Details</h3>
                     <div style="margin-bottom: 16px;">
                         <div>
-                            <strong>Price per pound:</strong><br>
+                            <strong id="product-details-price-label">Price per pound:</strong><br>
                             <span id="price-per-pound" style="color: var(--blue); font-size: 1.2rem; font-weight: bold;">$18.99</span>
                         </div>
                     </div>
@@ -60,12 +60,12 @@
                     <h3 style="color: var(--blue); margin-bottom: 20px;">Order Your Salmon</h3>
                     
                     <form id="order-form">
-                        <label for="pounds">How many pounds would you like?</label>
+                        <label for="pounds" id="quantity-label">How many pounds would you like?</label>
                         <input type="number" id="pounds" name="pounds" min="0.5" max="50" step="0.5" value="1" style="margin-bottom: 16px;">
                         
                         <div style="background: var(--gray-50); padding: 16px; border-radius: 8px; margin-bottom: 20px;">
                             <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-                                <span>Price per pound:</span>
+                                <span id="price-label">Price per pound:</span>
                                 <span id="display-price">$18.99</span>
                             </div>
                             <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
@@ -217,11 +217,29 @@
             salmon = salmonData[salmonType] || salmonData['fresh-king'];
         }
 
+        // Check if this is a smoked salmon product
+        const isSmoked = salmonType && (
+            salmonType.includes('sweet-cured') || 
+            salmonType.includes('regular-cured')
+        );
+        
         // Update page content
         document.getElementById('salmon-name').textContent = salmon.name;
         document.getElementById('salmon-description').textContent = salmon.description;
-        document.getElementById('price-per-pound').textContent = `$${salmon.price.toFixed(2)}`;
-        document.getElementById('display-price').textContent = `$${salmon.price.toFixed(2)}`;
+        
+        if (isSmoked) {
+            document.getElementById('price-per-pound').textContent = `$${salmon.price.toFixed(2)} per unit`;
+            document.getElementById('display-price').textContent = `$${salmon.price.toFixed(2)} per unit`;
+            document.getElementById('price-label').textContent = 'Price per unit:';
+            document.getElementById('product-details-price-label').textContent = 'Price per unit:';
+            document.getElementById('quantity-label').textContent = 'How many units would you like?';
+            document.getElementById('pounds').min = '1';
+            document.getElementById('pounds').step = '1';
+            document.getElementById('pounds').value = '1';
+        } else {
+            document.getElementById('price-per-pound').textContent = `$${salmon.price.toFixed(2)}`;
+            document.getElementById('display-price').textContent = `$${salmon.price.toFixed(2)}`;
+        }
         
         const imageDiv = document.getElementById('salmon-image');
         imageDiv.style.backgroundImage = `url('${salmon.image}')`;
@@ -239,7 +257,11 @@
             const pricePerPound = salmon.price;
             const total = pounds * pricePerPound;
             
-            document.getElementById('display-quantity').textContent = `${pounds} lbs`;
+            if (isSmoked) {
+                document.getElementById('display-quantity').textContent = `${pounds} units`;
+            } else {
+                document.getElementById('display-quantity').textContent = `${pounds} lbs`;
+            }
             document.getElementById('total-price').textContent = `$${total.toFixed(2)}`;
         }
 
@@ -282,7 +304,11 @@
             }
             setCart(cart);
             
-            alert(`Added ${pounds} lbs of ${salmon.name} to your order for $${total.toFixed(2)}`);
+            if (isSmoked) {
+                alert(`Added ${pounds} units of ${salmon.name} to your order for $${total.toFixed(2)}`);
+            } else {
+                alert(`Added ${pounds} lbs of ${salmon.name} to your order for $${total.toFixed(2)}`);
+            }
         });
 
         // Initialize total

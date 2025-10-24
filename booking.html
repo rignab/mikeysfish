@@ -272,12 +272,20 @@
             el.innerHTML = `
                 <h3 style="color: var(--blue); margin-bottom: 16px;">Your Order Summary</h3>
                 <div style="margin-bottom: 16px;">
-                    ${cart.map(item => `
-                        <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--gray-200);">
-                            <span>${item.name || item.sku}</span>
-                            <span>${(item.qty || 0).toFixed(1)} lbs - $${((item.price || 0) * (item.qty || 0)).toFixed(2)}</span>
-                        </div>
-                    `).join('')}
+                    ${cart.map(item => {
+                        // Check if this is a smoked salmon product
+                        const isSmoked = item.sku && (
+                            item.sku.includes('sweet-cured') || 
+                            item.sku.includes('regular-cured')
+                        );
+                        const unit = isSmoked ? 'units' : 'lbs';
+                        return `
+                            <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--gray-200);">
+                                <span>${item.name || item.sku}</span>
+                                <span>${(item.qty || 0).toFixed(1)} ${unit} - $${((item.price || 0) * (item.qty || 0)).toFixed(2)}</span>
+                            </div>
+                        `;
+                    }).join('')}
                 </div>
                 <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 1.1rem; color: var(--blue);">
                     <span>Total:</span>
@@ -301,9 +309,15 @@
             });
             
             const cart = getCart();
-            const orderDetails = cart.map(item => 
-                `${item.name}: ${item.qty} lbs - $${(item.price * item.qty).toFixed(2)}`
-            ).join('\n');
+            const orderDetails = cart.map(item => {
+                // Check if this is a smoked salmon product
+                const isSmoked = item.sku && (
+                    item.sku.includes('sweet-cured') || 
+                    item.sku.includes('regular-cured')
+                );
+                const unit = isSmoked ? 'units' : 'lbs';
+                return `${item.name}: ${item.qty} ${unit} - $${(item.price * item.qty).toFixed(2)}`;
+            }).join('\n');
             const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.qty), 0).toFixed(2);
             
             // Send email notification via EmailJS
