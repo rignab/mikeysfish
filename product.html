@@ -57,7 +57,7 @@
 
                 <!-- Order Form -->
                 <div class="card" style="padding: 24px;">
-                    <h3 style="color: var(--blue); margin-bottom: 20px;">Order Your Salmon</h3>
+                    <h3 id="order-title" style="color: var(--blue); margin-bottom: 20px;">Order Your Salmon</h3>
                     
                     <form id="order-form">
                         <label for="pounds" id="quantity-label">How many pounds would you like?</label>
@@ -187,17 +187,17 @@
             'crab-pieces': {
                 name: 'Dungeness Crab',
                 image: 'assets/images/crab.png',
-                price: 29.99,
-                pricePerPound: 29.99,
-                description: 'Fresh Dungeness crab pieces with sweet, delicate meat and distinctive flavor. These premium crab pieces are perfect for crab cakes, salads, or enjoying on their own. A true Pacific Northwest delicacy.',
+                price: 10.00,
+                pricePerPound: 10.00,
+                description: 'Fresh Dungeness crab pieces with sweet, delicate meat and distinctive flavor. These premium crab pieces are perfect for crab cakes, salads, or enjoying on their own. A true Pacific Northwest delicacy. Minimum order: 100 lbs.',
                 gradient: 'linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%)'
             },
             'jumbo-pot-prawns': {
                 name: 'Jumbo Pot Prawns',
                 image: 'assets/images/prawns.png',
-                price: 34.99,
-                pricePerPound: 34.99,
-                description: 'Fresh jumbo pot prawns with their sweet, delicate flavor and firm texture. These large, succulent prawns are perfect for grilling, sautéing, or adding to pasta dishes. A true delicacy from the Pacific Northwest.',
+                price: 13.00,
+                pricePerPound: 13.00,
+                description: 'Fresh jumbo pot prawns with their sweet, delicate flavor and firm texture. These large, succulent prawns are perfect for grilling, sautéing, or adding to pasta dishes. A true delicacy from the Pacific Northwest. Minimum order: 75 lbs.',
                 gradient: 'linear-gradient(135deg, #fff3e0 0%, #ffb74d 100%)'
             }
         };
@@ -223,6 +223,12 @@
             salmonType.includes('regular-cured')
         );
         
+        // Check if this is a crab product
+        const isCrab = dungenessType === 'crab-pieces';
+        
+        // Check if this is a prawns product
+        const isPrawns = prawnsType === 'jumbo-pot-prawns';
+        
         // Update page content
         document.getElementById('salmon-name').textContent = salmon.name;
         document.getElementById('salmon-description').textContent = salmon.description;
@@ -236,6 +242,24 @@
             document.getElementById('pounds').min = '1';
             document.getElementById('pounds').step = '1';
             document.getElementById('pounds').value = '1';
+        } else if (isCrab) {
+            document.getElementById('order-title').textContent = 'Order Your Crab';
+            document.getElementById('price-per-pound').textContent = `$${salmon.price.toFixed(2)}`;
+            document.getElementById('display-price').textContent = `$${salmon.price.toFixed(2)}`;
+            document.getElementById('quantity-label').textContent = 'How many pounds would you like? (Minimum: 100 lbs)';
+            document.getElementById('pounds').min = '100';
+            document.getElementById('pounds').step = '1';
+            document.getElementById('pounds').value = '100';
+            document.getElementById('pounds').max = '1000';
+        } else if (isPrawns) {
+            document.getElementById('order-title').textContent = 'Order Your Prawns';
+            document.getElementById('price-per-pound').textContent = `$${salmon.price.toFixed(2)}`;
+            document.getElementById('display-price').textContent = `$${salmon.price.toFixed(2)}`;
+            document.getElementById('quantity-label').textContent = 'How many pounds would you like? (Minimum: 75 lbs)';
+            document.getElementById('pounds').min = '75';
+            document.getElementById('pounds').step = '1';
+            document.getElementById('pounds').value = '75';
+            document.getElementById('pounds').max = '1000';
         } else {
             document.getElementById('price-per-pound').textContent = `$${salmon.price.toFixed(2)}`;
             document.getElementById('display-price').textContent = `$${salmon.price.toFixed(2)}`;
@@ -273,6 +297,18 @@
             const pounds = parseFloat(document.getElementById('pounds').value) || 0;
             if (pounds <= 0) {
                 alert('Please enter a valid quantity');
+                return;
+            }
+            
+            // Check crab minimum quantity
+            if (isCrab && pounds < 100) {
+                alert('Minimum order for Dungeness Crab is 100 lbs');
+                return;
+            }
+            
+            // Check prawns minimum quantity
+            if (isPrawns && pounds < 75) {
+                alert('Minimum order for Jumbo Pot Prawns is 75 lbs');
                 return;
             }
             
