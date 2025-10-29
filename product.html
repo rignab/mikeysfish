@@ -193,11 +193,11 @@
                 gradient: 'linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%)'
             },
             'jumbo-pot-prawns': {
-                name: 'Jumbo Pot Prawns',
+                name: 'Jumbo Spot Prawns',
                 image: 'assets/images/prawns.png',
                 price: 13.00,
                 pricePerPound: 13.00,
-                description: 'Fresh jumbo pot prawns with their sweet, delicate flavor and firm texture. These large, succulent prawns are perfect for grilling, sautéing, or adding to pasta dishes. A true delicacy from the Pacific Northwest. Minimum order: 75 lbs.',
+                description: 'Fresh jumbo spot prawns with their sweet, delicate flavor and firm texture. These large, succulent prawns are perfect for grilling, sautéing, or adding to pasta dishes. A true delicacy from the Pacific Northwest. Minimum order: 75 lbs.',
                 gradient: 'linear-gradient(135deg, #fff3e0 0%, #ffb74d 100%)'
             }
         };
@@ -252,7 +252,7 @@
             document.getElementById('pounds').value = '100';
             document.getElementById('pounds').max = '1000';
         } else if (isPrawns) {
-            document.getElementById('order-title').textContent = 'Order Your Prawns';
+            document.getElementById('order-title').textContent = 'Order Your Spot Prawns';
             document.getElementById('price-per-pound').textContent = `$${salmon.price.toFixed(2)}`;
             document.getElementById('display-price').textContent = `$${salmon.price.toFixed(2)}`;
             document.getElementById('quantity-label').textContent = 'How many pounds would you like? (Minimum: 75 lbs)';
@@ -308,7 +308,7 @@
             
             // Check prawns minimum quantity
             if (isPrawns && pounds < 75) {
-                alert('Minimum order for Jumbo Pot Prawns is 75 lbs');
+                alert('Minimum order for Jumbo Spot Prawns is 75 lbs');
                 return;
             }
             
